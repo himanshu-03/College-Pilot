@@ -12,6 +12,7 @@ const placementOfficerSchema = new mongoose.Schema({
   },
   collegeName: {
     type: String,
+    unqiue: true,
     required: true
   },
   collegeId:{
