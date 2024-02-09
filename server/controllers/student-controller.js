@@ -1,13 +1,24 @@
 const Student = require('../models/studentSchema');
+const { body, validationResult } = require('express-validator');
 
-exports.createStudent = async (req, res) => {
-  try {
-    const newStudent = await Student.create(req.body);
-    res.status(201).json(newStudent);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+exports.createStudent = [
+  body('fname').notEmpty().withMessage('First name is required'),
+  body('email').isEmail().withMessage('Invalid email address'),
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+
+  async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+      }
+      try {
+          const newStudent = await Student.create(req.body);
+          res.status(201).json(newStudent);
+      } catch (error) {
+          res.status(500).json({ message: error.message });
+      }
   }
-};
+];
 
 exports.getAllStudents = async (req, res) => {
   try {
@@ -55,7 +66,13 @@ exports.deleteStudent = async (req, res) => {
 };
 
 exports.signup = async (req, res) => {
+  const { email } = req.body;
   try {
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
+
     const newStudent = await Student.create(req.body);
     res.status(201).json(newStudent);
   } catch (error) {
@@ -63,12 +80,16 @@ exports.signup = async (req, res) => {
   }
 };
 
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const student = await Student.findByEmailAndPassword(email, password);
+    if (!student) {
+      return res.status(401).json({ message: 'User does not exist or invalid credentials' });
+    }
     res.status(200).json(student);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
