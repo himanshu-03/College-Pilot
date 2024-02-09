@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const todoController = require('../controllers/todoController');
+const studentController = require('../controllers/student-controller');
 
-router.get('/', todoController.getAllTodos);
-router.post('/', todoController.createTodo);
-router.get('/:id', todoController.getTodoById);
-router.put('/:id', todoController.updateTodo);
-router.delete('/:id', todoController.deleteTodo);
+router.post('/students', studentController.createStudent);
+router.get('/students', studentController.getAllStudents);
+router.get('/students/:id', studentController.getStudentById);
+router.put('/students/:id', studentController.updateStudent);
+router.delete('/students/:id', studentController.deleteStudent);
+
+router.post('/signup', studentController.signup);
+router.post('/login', studentController.login);
 
 module.exports = router;

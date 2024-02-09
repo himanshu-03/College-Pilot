@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const studentSchema = new mongoose.Schema({
     fname: {
@@ -57,6 +58,24 @@ const studentSchema = new mongoose.Schema({
         required:true
     }
 });
+
+studentSchema.statics.findByEmailAndPassword = async function(email, password) {
+    const student = await this.findOne({ email });
+    if (!student) {
+      throw new Error('Invalid email or password');
+    }
+    const isPasswordMatch = await bcrypt.compare(password, student.password);
+    if (!isPasswordMatch) {
+      throw new Error('Invalid email or password');
+    }
+    return student;
+  };
+
+  studentSchema.pre('save', async function(next) {
+    const student = this;
+    student.password = await bcrypt.hash(student.password, 10);
+    next();
+  });
 
 const Student = mongoose.model('Student', studentSchema,'Student');
 
