@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const route = require('./routes/route');
 require('dotenv').config();
 
-
 const app = express();
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -18,3 +17,5 @@ app.use('/placementpilot', route);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+module.exports = app;
