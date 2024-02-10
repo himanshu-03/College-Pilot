@@ -73,6 +73,7 @@ const AddNotice = () => {
           </button>
         </form>
       </div>
+      
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
     </>
   );
