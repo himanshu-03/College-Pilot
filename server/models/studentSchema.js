@@ -1,82 +1,60 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const studentSchema = new mongoose.Schema({
-    fname: {
+    name: {
         type: String,
         required: true
     },
-    lname: {
-        type: String,
+    rollNum: {
+        type: Number,
         required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
     },
     password: {
         type: String,
         required: true
     },
-    contactNumber:{
-        type:Number,
-        required:true
+    sclassName: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'sclass',
+        required: true,
     },
-    collegeName: {
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admin',
+        required: true,
+    },
+    role: {
         type: String,
-        required: true
+        default: "Student"
     },
-    branch: {
-        type: String,
-        required: true
-    },
-    rollNumber:{
-        type:Number,
-        required:true
-    },
-    X:{
-        type:Number,
-        required:true
-    },
-    XII:{
-        type:Number,
-        required:true
-    },
-    cgpa:{
-        type:Number,
-        required:true
-    },
-    year:{
-        type:String,
-        enum:['T.E','B.E'],
-        required:true
-    },
-
-    placed:{
-        type:Boolean,
-        required:true
-    }
+    examResult: [
+        {
+            subName: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'subject',
+            },
+            marksObtained: {
+                type: Number,
+                default: 0
+            }
+        }
+    ],
+    attendance: [{
+        date: {
+            type: Date,
+            required: true
+        },
+        status: {
+            type: String,
+            enum: ['Present', 'Absent'],
+            required: true
+        },
+        subName: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'subject',
+            required: true
+        }
+    }]
 });
 
-studentSchema.statics.findByEmailAndPassword = async function(email, password) {
-    const student = await this.findOne({ email });
-    if (!student) {
-      throw new Error('Invalid email or password');
-    }
-    const isPasswordMatch = await bcrypt.compare(password, student.password);
-    if (!isPasswordMatch) {
-      throw new Error('Invalid email or password');
-    }
-    return student;
-  };
-
-  studentSchema.pre('save', async function(next) {
-    const student = this;
-    student.password = await bcrypt.hash(student.password, 10);
-    next();
-  });
-
-const Student = mongoose.model('Student', studentSchema,'Student');
-
-module.exports = Student;
+module.exports = mongoose.model("student", studentSchema);
