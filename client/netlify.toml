@@ -7,3 +7,6 @@
   for = "/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+[build]
+  command = "CI=false npm run build"
