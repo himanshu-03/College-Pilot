@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const route = require('./routes/route');
+const express = require("express")
+const cors = require("cors")
+const mongoose = require("mongoose")
+const Routes = require("./routes/route.js")
 require('dotenv').config();
 
 const app = express();
@@ -10,10 +10,10 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json({ limit: '10mb' }))
+app.use(cors())
 
-app.use('/placementpilot', route);
+app.use('/placementpilot', Routes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
