@@ -119,7 +119,7 @@ const ChooseUser = ({ visitor }) => {
                   <Group fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Training and Placement Officer
+                  T&P Officer
                 </StyledTypography>
                 Login as a TPO to create notices, process student and placement statistics.
               </div>
