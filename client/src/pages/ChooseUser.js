@@ -119,9 +119,9 @@ const ChooseUser = ({ visitor }) => {
                   <Group fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Teacher
+                  Training and Placement Officer
                 </StyledTypography>
-                Login as a teacher to create courses, assignments, and track student progress.
+                Login as a TPO to create notices, process student and placement statistics.
               </div>
             </StyledPaper>
           </Grid>
