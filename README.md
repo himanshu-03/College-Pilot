@@ -14,60 +14,73 @@ The Placement Pilot project utilizes the MERN Stack (MongoDB, Express.js, React.
 ## Configuration Steps
 To configure this project locally, follow these steps:
 
-1. *Install Node.js and npm*:
-   - Download and install Node.js from the [official website](https://nodejs.org/en/download/).
+1. Download and install Node.js from the [official website](https://nodejs.org/en/download/).
 
-2. *Create a New Directory for Your Project*:
-   bash
+3. Create a new directory for your project:
+   ```bash
    mkdir my-mern-project
    cd my-mern-project
+   ```
    
-3. *Initialize a New Node.js Project*:
-   bash
+4. Initialize a new Node.js project:
+   ```bash
    npm init -y
+   ```
    
-4. *Install Express.js*:
-   bash
+5. Install Express.js:
+   ```bash
    npm install express
+   ```
    
-5. *Create a server.js File*:
+6. Create a server.js file:
+   This file will serve as the entry point for your Express.js server.
 
-This file will serve as the entry point for your Express.js server.
+6. Install React.js:
+   React can be installed using create-react-app:
+   ```bash
+   npx create-react-app client
+   ```
+   
+7. Install dependencies for React development:
+   ```bash
+   cd client
+   npm install axios react-router-dom
+   ```
 
-6. *Install React.js*:
+8. Set up MongoDB:
+   - Install MongoDB on your local machine or set up a cloud-hosted MongoDB service like MongoDB Atlas.
+   - Obtain your MongoDB connection URI.
 
-React can be installed using create-react-app:
-   bash
-npx create-react-app client
+9. Set Up Environment Variables:
 
-7. *Install Dependencies for React Development*:
-bash
-cd client
-npm install axios react-router-dom
+   - Create a .env file in the root directory of your project.
+   - Add your MongoDB connection URI to the .env file.
 
+10. Run Your Project:
+   - Start your Express.js server:
+      ```bash
+      node server.js
+      ```
 
-8. *Set Up MongoDB*:
+   - Start your React development server:
+      ```bash
+      cd client
+      npm start
+      ```
+      
+11. Access Your Application:
+   - Open your web browser and navigate to http://localhost:3000 to access your site locally.
 
- Install MongoDB on your local machine or set up a cloud-hosted MongoDB service like MongoDB Atlas.
-Obtain your MongoDB connection URI.
+<br />
 
-9. *Set Up Environment Variables*:
-
-Create a .env file in the root directory of your project.
-Add your MongoDB connection URI to the .env file.
-
-10. *Run Your Project*:
-
-Start your Express.js server:
-bash
-node server.js
-
-Start your React development server:
-bash
-cd client
-npm start
-
-
-Access Your Application:
-
-Open your web browser and navigate to http://localhost:3000 to access your site locally.
+<div align="center">
+<h3> Connect with me<a href="https://gifyu.com/image/Zy2f"><img src="https://github.com/milaan9/milaan9/blob/main/Handshake.gif" width="50px"></a>
+</h3> 
+<p align="center">
+    <a href="https://www.github.com/himanshu-03" target="_blank" rel="noreferrer"><img alt="Github" width="37px" src="https://github.com/himanshu-03/himanshu-03/raw/main/assets/socials/github.png"></a> &nbsp&nbsp&nbsp
+    <a href="https://www.linkedin.com/in/agarwal-himanshu" target="_blank"><img alt="LinkedIn" width="35px" src="https://cdn.iconscout.com/icon/free/png-512/free-linkedin-189-721962.png?f=webp&w=256"></a> &nbsp&nbsp&nbsp
+    <a href="https://twitter.com/hiimanshu_03" target="_blank"><img alt="Twitter" width="35px" src="https://freelogopng.com/images/all_img/1690643777twitter-x%20logo-png-white.png"></a> &nbsp&nbsp&nbsp
+    <a href="https://www.instagram.com/_._hiimanshu_._" target="_blank"><img alt="Instagram" width="35px" src="https://github.com/himanshu-03/himanshu-03/raw/main/assets/socials/instagram.png"></a> &nbsp&nbsp&nbsp
+    <a href="mailto:himanshuaaagarwal2002@gmail.com" target="_blank"><img alt="Gmail" width="35px" src="https://github.com/himanshu-03/himanshu-03/raw/main/assets/socials/gmail.png"></a>&nbsp&nbsp&nbsp
+<p align="right">(<a href="#top">Back to top</a>)</p>
+</p> 
